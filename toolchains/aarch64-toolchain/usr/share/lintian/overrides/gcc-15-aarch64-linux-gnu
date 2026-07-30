@@ -1,0 +1,2 @@
+gcc-15-aarch64-linux-gnu binary: hardening-no-pie
+gcc-15-aarch64-linux-gnu binary: binary-from-other-architecture

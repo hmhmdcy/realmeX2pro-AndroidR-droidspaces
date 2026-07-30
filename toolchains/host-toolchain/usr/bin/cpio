@@ -1,0 +1,11 @@
+#!/bin/bash
+# Minimal cpio wrapper for kernel build
+# Only supports: cpio --quiet -pd <destination>
+# Uses cpio from PATH or falls back to tar-based approach
+
+if command -v cpio.real &>/dev/null; then
+    exec cpio.real "$@"
+fi
+
+# Parse arguments for -pd (pass through) pattern
+exec tar -cf - --files-from=- | tar -xpf - -C "${@: -1}" 2>/dev/null

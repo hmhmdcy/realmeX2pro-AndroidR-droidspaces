@@ -1,0 +1,8 @@
+*.img
+*.zip
+*.apk
+*.log
+temp*
+source/out/
+source/kernel/msm-4.14
+tools/folkpatch/kpatch
