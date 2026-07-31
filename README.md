@@ -2,11 +2,29 @@
 
 Custom kernel for Realme X2 Pro (RMX1931/samurai) based on Android R (kernel 4.14.190-perf+) with **DroidSpaces** container support.
 
+## Kernel Source (内核来源)
+
+This project builds on the official Realme kernel source for Realme X2 Pro:
+
+- **Upstream**: [realme-kernel-opensource/realmeX2pro-X3-AndroidR-kernel-source](https://github.com/realme-kernel-opensource/realmeX2pro-X3-AndroidR-kernel-source) — Android R (kernel 4.14.190-perf+), base commit `23172a157`
+- **Fork**: [hmhmdcy/realmeX2pro-X3-AndroidR-kernel-source](https://github.com/hmhmdcy/realmeX2pro-X3-AndroidR-kernel-source) — all custom branches (see below) live here; linked via git submodule
+- **AnyKernel3**: [osm0sis/AnyKernel3](https://github.com/osm0sis/AnyKernel3) → fork [hmhmdcy/AnyKernel3](https://github.com/hmhmdcy/AnyKernel3) (RMX1931 device config), used by `tools/boot-packaging/make_anykernel3.sh`
+- **GCC 4.9**: [LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9](https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9)
+
+### Clone with submodules
+
+```bash
+git clone --recursive https://github.com/hmhmdcy/realmeX2pro-AndroidR-droidspaces.git
+# or, if already cloned without submodules:
+git submodule update --init --recursive
+```
+
 ## Branches
 
 | Branch | Description |
 |--------|-------------|
 | `feat/container-networking` | **Current mainline (verified working)**: all DroidSpaces + panic_logstore + full container/LXC/Kali enhancements. This is the branch to build and flash. |
+| `feat/cgroup-v2-freezer` | **Working branch** (this repo's submodule pin): currently identical to `feat/container-networking` at `076a14b76`. |
 | `master` | Release line: DroidSpaces + panic_logstore (superset relationship: `feat/container-networking` ⊇ `master`). |
 | `feat/droidspaces` | **Migrated from upstream DroidSpaces project** (archive): base container configs, cgroup fix, MODVERSIONS bypass. |
 | `feat/panic-logstore` | **Migrated from OnePlus SM8550 kernel** (archive): panic log persistence to `/cache/last_panic.log`. Identical to `master`. |
@@ -51,14 +69,14 @@ Output: `RealmeX2Pro-AK3.zip` (anykernel3 zip — flash in TWRP/OrangeFox) and `
 
 ```
 ├── build.sh                           # Build entry point
-├── source/                            # Kernel source tree
+├── source/                            # Kernel source tree (git submodule)
 │   ├── arch/arm64/configs/vendor/
 │   │   └── realme_sm8150-perf_defconfig
 │   └── ...
-├── toolchains/                        # Compilers (not included)
+├── toolchains/                        # Compilers (vendored in this repo)
 ├── tools/
 │   ├── boot-packaging/                # AK3 packaging, boot.img tools
-│   │   ├── anykernel3/                # AnyKernel3 template
+│   │   ├── anykernel3/                # AnyKernel3 template (git submodule)
 │   │   ├── make_anykernel3.sh         # Package AK3 zip
 │   │   ├── make_bootimg.sh            # Build boot.img directly
 │   │   └── extract_bootimg.py         # Extract stock boot.img
