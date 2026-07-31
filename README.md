@@ -6,10 +6,25 @@ Custom kernel for Realme X2 Pro (RMX1931/samurai) based on Android R (kernel 4.1
 
 | Branch | Description |
 |--------|-------------|
-| `master` | **Merged Main Branch**: Contains DroidSpaces container support, production-grade Panic Logstore, and FolkPatch Kernel Root |
-| `feat/droidspaces` | DroidSpaces container support (configs, cgroup fix, MODVERSIONS bypass) |
-| `feat/minidump-ramoops` | Minidump registration for ramoops persistence |
-| `feat/panic-logstore` | **panic_logstore**: dump kernel log to `/cache/last_panic.log` during panic via VFS write |
+| `feat/container-networking` | **Current mainline (verified working)**: all DroidSpaces + panic_logstore + full container/LXC/Kali enhancements. This is the branch to build and flash. |
+| `master` | Release line: DroidSpaces + panic_logstore (superset relationship: `feat/container-networking` ⊇ `master`). |
+| `feat/droidspaces` | **Migrated from upstream DroidSpaces project** (archive): base container configs, cgroup fix, MODVERSIONS bypass. |
+| `feat/panic-logstore` | **Migrated from OnePlus SM8550 kernel** (archive): panic log persistence to `/cache/last_panic.log`. Identical to `master`. |
+| `feat/minidump-ramoops` | **DEPRECATED / abandoned** — no content beyond baseline. Do not use. |
+
+### Feature matrix
+
+| Feature | droidspaces | master | container-networking |
+|---|---|---|---|
+| DroidSpaces base (namespaces/cgroups/seccomp/overlayfs/NAT) | ✅ | ✅ | ✅ |
+| MODVERSIONS CRC bypass (vendor modules) | ✅ | ✅ | ✅ |
+| panic_logstore (`/cache/last_panic.log`) | — | ✅ | ✅ |
+| Container NICs: MACVLAN/MACVTAP/VXLAN/GENEVE | — | — | ✅ |
+| IPv6 NAT, NET_CLS_CGROUP, XT_MATCH_CGROUP, IP_MROUTE | — | — | ✅ |
+| LXC: FHANDLE, CHECKPOINT_RESTORE, AUTOFS4, SQUASHFS, HUGETLBFS, CGROUP_PERF, BLK_DEV_THROTTLING | — | — | ✅ |
+| nftables full expression set (37 opts) | — | — | ✅ |
+| overlayfs redirect_dir/index, ipset all types, binfmt_misc | — | — | ✅ |
+| IPVLAN/IPVTAP | — | — | ❌ removed (breaks prebuilt wlan.ko ABI — see commit 076a14b76) |
 
 ## Prerequisites — Toolchains
 
