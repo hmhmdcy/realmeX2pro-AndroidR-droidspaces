@@ -92,6 +92,15 @@ echo ""
 echo "✅ boot.img 已生成: ${PROJECT_DIR}/RealmeX2Pro-BOOT-folkpatch.img"
 ls -lh "${PROJECT_DIR}/RealmeX2Pro-BOOT-folkpatch.img"
 
+# Pad 到 96MB（boot 分区大小，bootloader 校验完整分区）
+BOOT_IMG="${PROJECT_DIR}/RealmeX2Pro-BOOT-folkpatch.img"
+python3 -c "
+with open('${BOOT_IMG}', 'ab') as f:
+    f.truncate(100663296)
+"
+echo "✅ 已 pad 到 96MB (100663296)"
+ls -lh "${BOOT_IMG}"
+
 echo ""
 echo "刷机：fastboot flash boot RealmeX2Pro-BOOT-folkpatch.img"
 echo "  或：fastboot boot RealmeX2Pro-BOOT-folkpatch.img（临时启动测试）"
