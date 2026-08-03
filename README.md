@@ -2,9 +2,11 @@
 
 Custom kernel for Realme X2 Pro (RMX1931/samurai) based on Android R (kernel 4.14.190-perf+) with **DroidSpaces** container support.
 
-## Kernel Source (内核来源)
+### Kernel source (内核来源)
 
 This project builds on the official Realme kernel source for Realme X2 Pro:
+
+- **容器内核补丁说明**: [`source/CONTAINER-ROOTLESS-PATCHES.md`](source/CONTAINER-ROOTLESS-PATCHES.md) — rootless Podman 7 关卡补丁链、安全边界、实测结论（overlay 存储不可行原因、`--cgroups=disabled` 必要、镜像加速配置）
 
 - **Upstream**: [realme-kernel-opensource/realmeX2pro-X3-AndroidR-kernel-source](https://github.com/realme-kernel-opensource/realmeX2pro-X3-AndroidR-kernel-source) — Android R (kernel 4.14.190-perf+), base commit `23172a157`
 - **Fork**: [hmhmdcy/realmeX2pro-X3-AndroidR-kernel-source](https://github.com/hmhmdcy/realmeX2pro-X3-AndroidR-kernel-source) — all custom branches (see below) live here; linked via git submodule
