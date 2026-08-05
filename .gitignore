@@ -6,3 +6,5 @@ temp*
 source/out/
 source/kernel/msm-4.14
 tools/folkpatch/kpatch
+toolchains/clang-r433403b/lib64/liblldb*.so*
+toolchains/clang-r433403b/lib64/libclang_cxx*.so*

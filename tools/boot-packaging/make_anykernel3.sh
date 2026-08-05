@@ -22,7 +22,7 @@ KPTOOLS="${PROJECT_DIR}/tools/folkpatch/kptools-linux"
 KPIMG="${PROJECT_DIR}/tools/folkpatch/kpimg-android"
 SKEY="${FOLKPATCH_SKEY:-FolkPatch2026}"
 PKG_NAME="${FOLKPATCH_PKG:-me.yuki.folk}"
-CERT_SIGN="${FOLKPATCH_SIGN:-be9a9921cb475437d756cc11f9cd8096dd21ad512d3be6c6963ff9aa603e2ee1}"
+CERT_SIGN="${FOLKPATCH_SIGN:-9d05e29d838122b648dbbc4df8a3ce3bf13a75f2173055612160a8eaee001c2e}"
 KPATCH_BIN="${PROJECT_DIR}/tools/folkpatch/libkpatch.so"
 
 if [ -x "$KPTOOLS" ] && [ -f "$KPIMG" ]; then

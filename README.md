@@ -50,7 +50,7 @@ git submodule update --init --recursive
 
 Place toolchains under `toolchains/`:
 
-- `clang-r383902/` — AOSP Clang
+- `clang-r433403b/` — AOSP Clang 13.0.3 (default; `CLANG_DIR` 环境变量可覆盖回 `clang-r383902/` Clang 11.0.1)
 - `aarch64-linux-android-4.9/` — GCC cross-compiler
 - `host-toolchain/` — Host compilation libraries (libcrypto, libz, etc.)
 - `aarch64-toolchain/` — Additional aarch64 host libraries
